@@ -1,5 +1,7 @@
 package com.trandyol.productapi.product.service;
 
+import com.trandyol.productapi.llm.LlmInternalApi;
+import com.trandyol.productapi.llm.entity.ProductDescription;
 import com.trandyol.productapi.model.ProductDto;
 import com.trandyol.productapi.product.entity.ProductEntity;
 import com.trandyol.productapi.product.mappers.ProductMapper;
@@ -19,6 +21,7 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
+    private final LlmInternalApi llmInternalApi;
 
     public List<ProductDto> getProducts() {
         return productRepository.findAll().stream()
@@ -42,12 +45,14 @@ public class ProductService {
             throw new RuntimeException("Error while converting the image data to bytes", e);
         }
 
+        ProductDescription productImageDescriptions = llmInternalApi.getProductImageDescriptions(1, imageData);
+
         ProductDto productDto = ProductDto.builder()
                 .name(productCreateRequest.getName())
                 .price(productCreateRequest.getPrice())
                 .description(productCreateRequest.getDescription())
                 .encodedImage(encodedImage)
-                .altText(productCreateRequest.getDescription())
+                .altText(productImageDescriptions.getGeneratedText())
                 .build();
 
         ProductEntity productEntity = productRepository.save(productMapper.toEntity(productDto));
