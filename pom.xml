@@ -16,6 +16,10 @@
     <properties>
         <java.version>21</java.version>
         <spring-modulith.version>1.1.3</spring-modulith.version>
+        <spring.open.feign.version>3.1.0</spring.open.feign.version>
+        <feign.okhttp.version>11.7</feign.okhttp.version>
+        <spring.resillency.version>1.7.1</spring.resillency.version>
+        <feign.form.version>3.8.0</feign.form.version>
     </properties>
     <dependencies>
         <dependency>
@@ -90,6 +94,23 @@
             <groupId>org.springframework.modulith</groupId>
             <artifactId>spring-modulith-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- feign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>${spring.open.feign.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+            <version>${feign.okhttp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form</artifactId>
+            <version>${feign.form.version}</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
