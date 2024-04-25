@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Setter
 @Entity
 @Table(name = "product")
-public class Product {
+public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,6 +26,7 @@ public class Product {
     @Column(name = "price")
     private BigDecimal price;
 
+    @Lob
     @Column(name = "encoded_image")
     private String encodedImage;
 

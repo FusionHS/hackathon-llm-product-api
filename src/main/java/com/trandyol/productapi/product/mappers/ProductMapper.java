@@ -1,15 +1,15 @@
 package com.trandyol.productapi.product.mappers;
 
 import com.trandyol.productapi.model.ProductDto;
-import com.trandyol.productapi.product.entity.Product;
+import com.trandyol.productapi.product.entity.ProductEntity;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ProductMapper {
-    com.trandyol.productapi.product.entity.Product toEntity(ProductDto productDto);
+    ProductEntity toEntity(ProductDto productDto);
 
-    ProductDto toDto(com.trandyol.productapi.product.entity.Product product);
+    ProductDto toDto(ProductEntity productEntity);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Product partialUpdate(ProductDto productDto, @MappingTarget Product product);
+    ProductEntity partialUpdate(ProductDto productDto, @MappingTarget ProductEntity productEntity);
 }
