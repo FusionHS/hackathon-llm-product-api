@@ -1,7 +1,16 @@
 spring:
   application:
     name: product-api
-
   jpa:
     hibernate:
       ddl-auto: create
+  docker:
+    compose:
+      lifecycle-management: start_only
+llm:
+  image-to-text:
+    models:
+      - group: Salesforce
+        model: blip-image-captioning-base
+      - group: nlpconnect
+        model: vit-gpt2-image-captioning

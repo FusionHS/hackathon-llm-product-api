@@ -1,13 +1,14 @@
 package com.trandyol.productapi.llm.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.trandyol.productapi.llm.config.LlmApiModel;
+import lombok.Builder;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
+@Builder
 public class ProductDescription {
 
     private Long productId;
-
     private String generatedText;
+    private LlmApiModel model;
 }
