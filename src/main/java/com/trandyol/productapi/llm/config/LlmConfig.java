@@ -9,5 +9,5 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "llm")
 public class LlmConfig {
     private LlmType imageToText;
-    private LlmType selectBest;
+    private LlmType promptSelect;
 }

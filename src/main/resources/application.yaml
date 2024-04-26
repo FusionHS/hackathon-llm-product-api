@@ -12,5 +12,14 @@ llm:
     models:
       - group: Salesforce
         model: blip-image-captioning-base
+      - group: Salesforce
+        model: blip-image-captioning-large
       - group: nlpconnect
         model: vit-gpt2-image-captioning
+      - group: moranyanuka
+        model: blip-image-captioning-large-mocha
+  prompt-select:
+    models:
+      - group: openai
+        model: clip-vit-large-patch14
+

@@ -1,6 +1,7 @@
 package com.trandyol.productapi.product.rest;
 
 import com.trandyol.productapi.model.ProductDto;
+import com.trandyol.productapi.model.ProductShortDto;
 import com.trandyol.productapi.product.rest.contract.ProductCreateRequest;
 import com.trandyol.productapi.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -21,13 +22,18 @@ public class ProductController {
         return productService.getProducts();
     }
 
+    @GetMapping("/listings")
+    public List<ProductShortDto> getProductsListings() {
+        return productService.getProductsListings();
+    }
+
     @GetMapping("/{id}")
     public ProductDto getProductsById(@PathVariable Long id) {
         return productService.getProduct(id);
     }
 
     @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ProductDto addProduct(@ModelAttribute ProductCreateRequest productCreateRequest) {
+    public ProductShortDto addProduct(@ModelAttribute ProductCreateRequest productCreateRequest) {
         return productService.createProduct(productCreateRequest);
     }
 

@@ -3,6 +3,7 @@ package com.trandyol.productapi.product.service;
 import com.trandyol.productapi.llm.LlmInternalApi;
 import com.trandyol.productapi.llm.entity.ProductDescription;
 import com.trandyol.productapi.model.ProductDto;
+import com.trandyol.productapi.model.ProductShortDto;
 import com.trandyol.productapi.product.entity.ProductEntity;
 import com.trandyol.productapi.product.mappers.ProductMapper;
 import com.trandyol.productapi.product.repository.ProductRepository;
@@ -34,7 +35,7 @@ public class ProductService {
                 .orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
-    public ProductDto createProduct(ProductCreateRequest productCreateRequest) {
+    public ProductShortDto createProduct(ProductCreateRequest productCreateRequest) {
 
         String encodedImage;
         byte[] imageData;
@@ -56,6 +57,12 @@ public class ProductService {
                 .build();
 
         ProductEntity productEntity = productRepository.save(productMapper.toEntity(productDto));
-        return productMapper.toDto(productEntity);
+        return productMapper.toShortDto(productEntity);
+    }
+
+    public List<ProductShortDto> getProductsListings() {
+        return productRepository.findAll().stream()
+                .map(productMapper::toShortDto)
+                .collect(Collectors.toList());
     }
 }
